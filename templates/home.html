@@ -36,6 +36,15 @@
                                 </a>
                             </span>
                             <span style="vertical-align: super;">{{ post.like_count }}명이 좋아합니다.</span>
+                            <div class="follow=bth">
+                                {% if user != post.user %}
+                                    {% if user.profile in post.user.profile.followers.all %}
+                                        <a href="{% url 'users:follow_toggle' post.user.id %}" class="btn btn-primary">팔로잉</a>
+                                    {% else %}
+                                        <a href="{% url 'users:follow_toggle' post.user.id %}" class="btn btn-outline-primary">팔로우</a>
+                                    {% endif %}
+                                {% endif %}
+                            </div>
                         </div>
                     </div>
                     <div class="card-body">
