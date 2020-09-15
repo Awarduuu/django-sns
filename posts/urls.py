@@ -6,6 +6,7 @@ urlpatterns = [
     path('create/', create, name='create'),
     path('update/<int:id>/', update, name='update'),
     path('delete/<int:id>/', delete, name="delete"),
+    path('mypage/', mypage, name='mypage'),
 
     #comments
     path('<int:post_id>/create_comment/', create_comment, name="create_comment"),
@@ -14,4 +15,5 @@ urlpatterns = [
     #likes
     path('<int:post_id>/post_like/', post_like, name="post_like"),
     path('like_list/', like_list, name="like_list"),
+
 ]

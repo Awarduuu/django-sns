@@ -5,6 +5,20 @@ from django.contrib import messages
 import pdb
 
 # Create your views here.
+
+@login_required
+def mypage(request, id):
+    posts = Post.objects.filter(user=request.user)
+    user = get_object_or_404(User, pk=id)
+    followings = user.profile.followings.all()
+    followers = user.profile.followers.all()  
+    return render(request, 'posts/mypage.html', { 'posts': posts })
+def show(request):
+    post = Post.objects.get()
+    post.save()
+    return render(request, 'posts/mypage.html', { 'posts': posts })
+    
+
 @login_required
 def create(request):
     if request.method == "POST":

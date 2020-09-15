@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if user.is_authenticated %}
+
+<div class="container">
+    <h1>My Page</h1>
+    <h3>팔로워</h3>
+    <h3>팔로잉</h3>
+    <p>
+    {% for follower in user.profile.followers.all %}
+        {{ follower.user.id }}
+    {% endfor %}
+    </p>
+    <h3>글 쓴 목록</h3>
+    <div class="row">
+        {% for post in posts %}
+        <div class="col-md-4 col-12">
+            <div class="card" style="width: 20rem; margin-top: 30px;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ post.title }}</h5>
+                    <p class="card-text">{{ post.content }}</p>
+                    <p>{{ post.created_at }}</p>
+                    <p>조회수 : {{ post.view_count }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% else %}
+    <h3>로그인 후 이용이 가능합니다.</h3>
+    <a href="{% url 'account_login' %}" class="btn btn-warning">로그인 </a>
+    <a href="{% url 'account_signup' %}" class="btn btn-warning">회원가입 </a>
+{% endif %}
+{% endblock %}
