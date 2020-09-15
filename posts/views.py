@@ -12,7 +12,8 @@ def mypage(request, id):
     user = get_object_or_404(User, pk=id)
     followings = user.profile.followings.all()
     followers = user.profile.followers.all()  
-    return render(request, 'posts/mypage.html', { 'posts': posts })
+    return render(request, 'posts/mypage.html', { 'posts': Post.objects.filter(user=user), 
+    'followings' : user.profile.followings.all(), 'followers' : user.profile.followers.all() })
 def show(request):
     post = Post.objects.get()
     post.save()

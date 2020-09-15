@@ -6,7 +6,7 @@ urlpatterns = [
     path('create/', create, name='create'),
     path('update/<int:id>/', update, name='update'),
     path('delete/<int:id>/', delete, name="delete"),
-    path('mypage/', mypage, name='mypage'),
+    path('mypage/<int:id>/', mypage, name='mypage'),
 
     #comments
     path('<int:post_id>/create_comment/', create_comment, name="create_comment"),
